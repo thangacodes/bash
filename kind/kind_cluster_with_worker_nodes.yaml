@@ -2,8 +2,5 @@ kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
   - role: control-plane
-    name: vedhu            # Custom name is vedhu for the control-plane node
   - role: worker
-    name: vedhu-wn1        # Custom name is vedhu for the first worker node
   - role: worker
-    name: vedhu-wn2        # Custom name is vedhu for the second worker node
