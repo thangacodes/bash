@@ -19,6 +19,7 @@ jobs:
           role-to-assume: arn:aws:iam::282526987315:role/openid-connect-github
           aws-region: ap-south-1
           audience: sts.amazonaws.com
+          role-session-name: GitHubActionsSession
 
       - name: List S3 buckets
         run: |
