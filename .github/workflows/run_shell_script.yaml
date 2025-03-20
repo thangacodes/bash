@@ -1,36 +1,26 @@
-name: Run JSON Processing Script
+name: AWS OIDC Authentication
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  run_script:
+  deploy:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-    - name: List files in macos_related (for debugging purposes)
-      run: |
-        if [ -d "macos_related" ]; then
-          ls -R macos_related
-        else
-          echo "Directory macos_related does not exist"
-        fi
-    - name: Run system info commands
-      run: |
-        whoami
-        lsblk
-        hostname
-        free -h
-        lscpu
-    - name: Run macOS-related script (system_info.sh)
-      run: |
-        if [ -f "macos_related/system_info.sh" ]; then
-          sh macos_related/system_info.sh
-        else
-          echo "Script macos_related/system_info.sh not found"
-        fi
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up AWS credentials using OIDC
+      - name: Set up AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::282526987315:role/openid-connect-github
+          aws-region: ap-south-1
+      - name: List S3 buckets
+        run: |
+          echo "Listing out S3 buckets available in the Mumbai region in AWS account"
+          aws s3 ls --region ap-south-1
+
