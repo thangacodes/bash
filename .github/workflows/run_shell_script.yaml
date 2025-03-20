@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - main
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -16,13 +15,12 @@ jobs:
       # Step 2: Set up AWS credentials using OIDC
       - name: Set up AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
-          with:
-            role-to-assume: arn:aws:iam::282526987315:role/openid-connect-github
-            aws-region: ap-south-1
-            audience: sts.amazonaws.com
+        with:
+          role-to-assume: arn:aws:iam::282526987315:role/openid-connect-github
+          aws-region: ap-south-1
+          audience: sts.amazonaws.com
 
       - name: List S3 buckets
         run: |
           echo "Listing out S3 buckets available in the Mumbai region in AWS account"
           aws s3 ls --region ap-south-1
-
