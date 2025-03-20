@@ -1,27 +1,14 @@
-name: AWS OIDC Authentication
-on:
-  push:
-    branches:
-      - main
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    permissions:
+      id-token: write  # Required for OIDC
+      contents: read
     steps:
-      # Step 1: Checkout the code
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      # Step 2: Set up AWS credentials using OIDC
-      - name: Set up AWS credentials
+      - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::282526987315:role/openid-connect-github
+          role-to-assume: arn:aws:iam::282526987315:role/github-action-oidc-to-aws-role 
           aws-region: ap-south-1
-          audience: sts.amazonaws.com
-          role-session-name: GitHubActionsSession
-
-      - name: List S3 buckets
-        run: |
-          echo "Listing out S3 buckets available in the Mumbai region in AWS account"
-          aws s3 ls --region ap-south-1
+      - name: Deploy to AWS
+        run: aws s3 ls --region ap-south-1
