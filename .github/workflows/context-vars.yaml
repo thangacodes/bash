@@ -10,5 +10,5 @@ jobs:
       - name: "Checking context variables"
         run: |
           echo "Repository name: " ${{ github.repository }}
-          echo "Workflow name: " ${{ github.workflows }}
+          echo "Workflow name: " ${{ github.workflow }}
           echo "Triggered by: " ${{ github.triggering_actor }}
