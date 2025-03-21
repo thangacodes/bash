@@ -1,7 +1,10 @@
 name: "Testing GitHub Workflow Variables"
 on:
-  workflow_dispatch
+  push:
+    branches:
+      - main
 env:
+  mycorp: My corp
   corp: try-devops.xyz
   primary_cloud: aws-cloud
   secondary_cloud: azure-cloud
@@ -12,8 +15,8 @@ jobs:
     env:
       Greeting: Hello
     steps:
-      - name: "Hey you are from ${{ env.corp }}"
+      - name: "Hello, you are working at: ${{ env.corp }}"
         run: |
-          echo "Our primary cloud is ${{ env.primary_cloud }}"
-          echo "Our secondary cloud is ${{ env.secondary_cloud }}"
-          echo "Our additional cloud is ${{ env.additional_cloud }}"
+          echo "${{ env.mycorp }} is primarily using cloud as: ${{ env.primary_cloud }}"
+          echo "${{ env.mycorp }} is secondarily using cloud as: ${{ env.secondary_cloud }}"
+          echo "${{ env.mycorp }} is additionally using cloud as ${{ env.additional_cloud }}"
