@@ -19,10 +19,10 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3  # Updated to latest version
       
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v2  # Updated to latest version
         with:
           role-to-assume: arn:aws:iam::282526987315:role/oidc-github-aws-connection
           role-session-name: Github
@@ -32,7 +32,5 @@ jobs:
         run: |
           echo "List out available S3 buckets in region ${{ env.AWS_REGION }}"
           aws s3 ls --region ${{ env.AWS_REGION }}
-          echo "taking 2 seconds break..."
-          sleep 2
-          echo "list out files in ${{ S3_BUCKET }}"
+          echo "List out files in ${{ S3_BUCKET }}"
           aws s3 ls ${{ S3_BUCKET }}
