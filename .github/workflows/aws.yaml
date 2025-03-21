@@ -26,7 +26,8 @@ jobs:
           role-to-assume: arn:aws:iam::282526987315:role/oidc-github-aws-connection
           role-session-name: Github
           aws-region: ${{ env.AWS_REGION }}
+      
       - name: Checking S3 buckets
         run: |
-          echo "list out available S3 buckets in region ${{ AWS_REGION }}"
-          aws s3 ls --region ${{ AWS_REGION }}
+          echo "List out available S3 buckets in region ${{ env.AWS_REGION }}"
+          aws s3 ls --region ${{ env.AWS_REGION }}
