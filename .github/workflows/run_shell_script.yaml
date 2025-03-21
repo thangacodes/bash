@@ -8,7 +8,7 @@ jobs:
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2
         with:
-          role-to-assume: arn:aws:iam::282526987315:role/github-action-oidc-to-aws-role 
+          role-to-assume: arn:aws:iam::282526987315:role/oidc-github-aws-connection
           aws-region: ap-south-1
       - name: Deploy to AWS
         run: aws s3 ls --region ap-south-1
