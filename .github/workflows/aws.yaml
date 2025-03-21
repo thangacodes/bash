@@ -1,36 +1,42 @@
-name: terraform-automation
+name: GitHub Action with AWS CLI command exec
 on:
   push:
     branches:
       - main
-
 env:
   AWS_REGION: "ap-south-1"
   S3_BUCKET: "gitops-demo-bucket-tf"
-
 permissions:
   id-token: write
   contents: read
-
 jobs:
   terraform:
     name: terraform
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3  # Updated to latest version
-      
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v2  # Updated to latest version
         with:
           role-to-assume: arn:aws:iam::282526987315:role/oidc-github-aws-connection
           role-session-name: Github
           aws-region: ${{ env.AWS_REGION }}
-      
       - name: Checking S3 buckets
         run: |
           echo "List out available S3 buckets in region ${{ env.AWS_REGION }}"
           aws s3 ls --region ${{ env.AWS_REGION }}
           echo "List out files in ${{ env.S3_BUCKET }}"
           aws s3 ls ${{ env.S3_BUCKET }}
+
+      - name: Executing AWS CLI commands
+        run: |
+          echo "Running AWS CLI commands.."
+          aws iam list-users
+          aws iam list-roles
+          aws sts get-caller-identity
+
+
+
+
+          
