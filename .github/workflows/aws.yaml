@@ -1,0 +1,32 @@
+name: terraform-automation
+on:
+  push:
+    branches:
+      - main
+
+env:
+  AWS_REGION: "ap-south-1"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform:
+    name: terraform
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::282526987315:role/oidc-github-aws-connection
+          role-session-name: Github
+          aws-region: ${{ env.AWS_REGION }}
+      - name: Checking S3 buckets
+        run: |
+          echo "list out available S3 buckets in region {{ AWS_REGION }}"
+          aws s3 ls --region {{ AWS_REGION }}
