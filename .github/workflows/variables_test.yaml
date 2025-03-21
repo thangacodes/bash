@@ -1,10 +1,10 @@
-name: "Testing GitHub Workflow Variables"
+name: "Testing GitHub env Variables"
 # on:
 #   push:
 #     branches:
 #       - main
 on:
-  workflow_disptach
+  workflow_dispatch
 env:
   mycorp: My corp
   corp: try-devops.xyz
