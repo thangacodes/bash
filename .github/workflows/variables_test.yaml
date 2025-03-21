@@ -17,6 +17,6 @@ jobs:
     steps:
       - name: "Hello, you are working at: ${{ env.corp }}"
         run: |
-          echo "${{ env.mycorp }} is primarily using cloud as: ${{ env.primary_cloud }}"
-          echo "${{ env.mycorp }} is secondarily using cloud as: ${{ env.secondary_cloud }}"
-          echo "${{ env.mycorp }} is additionally using cloud as ${{ env.additional_cloud }}"
+          echo "${{ env.Greeting }} ${{ env.mycorp }} is primarily using cloud as: ${{ env.primary_cloud }}"
+          echo "${{ env.Greeting }} ${{ env.mycorp }} is secondarily using cloud as: ${{ env.secondary_cloud }}"
+          echo "${{ env.Greeting }} ${{ env.mycorp }} is additionally using cloud as: ${{ env.additional_cloud }}"
