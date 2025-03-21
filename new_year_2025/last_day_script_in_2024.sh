@@ -10,6 +10,6 @@ echo "
 ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝        ╚═╝       ╚═╝  ╚═══╝╚══════╝ ╚══╝╚══╝        ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚══════╝ ╚═════╝ ╚══════╝╚══════╝
 "
 echo 
-echo "Have a lovely year ahead of you 2025"
+echo "Have a lovely year ahead of everyone in 2025"
 echo 
 exit 0
