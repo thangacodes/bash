@@ -6,6 +6,7 @@ on:
 
 env:
   AWS_REGION: "ap-south-1"
+  S3_BUCKET: "gitops-demo-bucket-tf"
 
 permissions:
   id-token: write
@@ -31,3 +32,7 @@ jobs:
         run: |
           echo "List out available S3 buckets in region ${{ env.AWS_REGION }}"
           aws s3 ls --region ${{ env.AWS_REGION }}
+          echo "taking 2 seconds break..."
+          sleep 2
+          echo "list out files in ${{ S3_BUCKET }}"
+          aws s3 ls ${{ S3_BUCKET }}
