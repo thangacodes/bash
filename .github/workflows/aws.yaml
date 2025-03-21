@@ -6,23 +6,27 @@ on:
 env:
   AWS_REGION: "ap-south-1"
   S3_BUCKET: "gitops-demo-bucket-tf"
+  IAM_ROLE: "arn:aws:iam::282526987315:role/oidc-github-aws-connection"
+  LIST_USER: "aws iam list-users"
+  LIST_ROLES: "aws iam list-roles"
+  CALLER_IDENTITY: "aws sts get-caller-identity"
 permissions:
   id-token: write
   contents: read
 jobs:
-  terraform:
-    name: terraform
+  gitaction:
+    name: CICD
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3  # Updated to latest version
+        uses: actions/checkout@v3  
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2  # Updated to latest version
+        uses: aws-actions/configure-aws-credentials@v3 
         with:
-          role-to-assume: arn:aws:iam::282526987315:role/oidc-github-aws-connection
+          role-to-assume: ${{ env.IAM_ROLE }}
           role-session-name: Github
           aws-region: ${{ env.AWS_REGION }}
-      - name: Checking S3 buckets
+      - name: Executing AWS CLI command sets
         run: |
           echo "List out available S3 buckets in region ${{ env.AWS_REGION }}"
           aws s3 ls --region ${{ env.AWS_REGION }}
@@ -32,9 +36,10 @@ jobs:
       - name: Executing AWS CLI commands
         run: |
           echo "Running AWS CLI commands.."
-          aws iam list-users
-          aws iam list-roles
-          aws sts get-caller-identity
+          ${{ env.LIST_USER }}
+          ${{ env.LIST_ROLE }}
+          ${{ env.CALLER_IDENTITY }}
+        
 
 
 
