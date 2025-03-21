@@ -28,7 +28,7 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}
       - name: Executing AWS CLI command sets
         run: |
-          echo "List out available S3 buckets in region ${{ env.AWS_REGION }}"
+          echo "List out S3 buckets available in region as: ${{ env.AWS_REGION }}"
           aws s3 ls --region ${{ env.AWS_REGION }}
           echo "List out files in ${{ env.S3_BUCKET }}"
           aws s3 ls ${{ env.S3_BUCKET }}
@@ -39,9 +39,3 @@ jobs:
           ${{ env.LIST_USER }}
           ${{ env.LIST_ROLE }}
           ${{ env.CALLER_IDENTITY }}
-        
-
-
-
-
-          
