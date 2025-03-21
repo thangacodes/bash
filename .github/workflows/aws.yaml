@@ -32,5 +32,5 @@ jobs:
         run: |
           echo "List out available S3 buckets in region ${{ env.AWS_REGION }}"
           aws s3 ls --region ${{ env.AWS_REGION }}
-          echo "List out files in ${{ S3_BUCKET }}"
+          echo "List out files in ${{ env.S3_BUCKET }}"
           aws s3 ls ${{ S3_BUCKET }}
