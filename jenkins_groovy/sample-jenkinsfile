@@ -1,7 +1,4 @@
-# jenkinsfile:
-
 @Library('my-k8s-library') _
-
 pipeline {
     agent any
     
@@ -19,7 +16,6 @@ pipeline {
                 }
             }
         }
-
         stage('build') {
             steps {
                 script {
@@ -33,7 +29,6 @@ pipeline {
                 }
             }
         }
-
         stage('testing') {
             steps {
                 script {
@@ -47,7 +42,6 @@ pipeline {
                 }
             }
         }
-
         stage('deploy') {
             steps {
                 script {
@@ -63,10 +57,9 @@ pipeline {
             }
         }
     }
-
     post {
         always {
-            echo "Pipeline job finished"
+            echo "Pipeline job completed"
         }
         failure {
             echo "Pipeline job failed"
