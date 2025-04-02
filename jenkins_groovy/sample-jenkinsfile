@@ -1,0 +1,75 @@
+# jenkinsfile:
+
+@Library('my-k8s-library') _
+
+pipeline {
+    agent any
+    
+    stages {
+        stage('checkout SCM') {
+            steps {
+                script {
+                    try {
+                        checkout scm  // Use the correct built-in Jenkins step for SCM checkout
+                    } catch (Exception e) {
+                        echo "Error during SCM checkout: ${e.message}"
+                        currentBuild.result = 'FAILURE'
+                        throw e  // Re-throw the exception so the pipeline fails
+                    }
+                }
+            }
+        }
+
+        stage('build') {
+            steps {
+                script {
+                    try {
+                        sh 'echo build'
+                    } catch (Exception e) {
+                        echo "Error during build: ${e.message}"
+                        currentBuild.result = 'FAILURE'
+                        throw e
+                    }
+                }
+            }
+        }
+
+        stage('testing') {
+            steps {
+                script {
+                    try {
+                        sh 'echo testing'
+                    } catch (Exception e) {
+                        echo "Error during testing: ${e.message}"
+                        currentBuild.result = 'FAILURE'
+                        throw e
+                    }
+                }
+            }
+        }
+
+        stage('deploy') {
+            steps {
+                script {
+                    try {
+                        sh 'echo deploy'
+                    } 
+                    catch (Exception e) {
+                        echo "Error during deploy: ${e.message}"
+                        currentBuild.result = 'FAILURE'
+                        throw e
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            echo "Pipeline job finished"
+        }
+        failure {
+            echo "Pipeline job failed"
+        }
+    }
+}
