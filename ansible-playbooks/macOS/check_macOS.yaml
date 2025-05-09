@@ -1,0 +1,22 @@
+---
+- name: "System information finding"
+  hosts: localhost
+  gather_facts: yes
+  become: false
+  tasks:
+    - name: "IP Address for the mac book"
+      command: ipconfig getifaddr en0
+      register: ip_address
+    - debug:
+        msg: "Your Macbook IP address is: {{ ip_address.stdout }}"
+    - name: "To find Apple Silicon or Intel MacOS"
+      command: uname -m
+      register: mac_series_out
+    - debug:
+        msg: "Your macOS series is: {{ mac_series_out.stdout }} Apple Silicon type (Not Intel based)"
+    - name: "Mac Hardware details"
+      command: system_profiler SPHardwareDataType
+      register: mac_model
+    - debug:
+        msg: "{{ item }}"
+      loop: "{{ mac_model.stdout.splitlines() }}"
