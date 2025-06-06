@@ -1,0 +1,17 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: demo-cluster
+  region: ap-south-1
+vpc:
+  subnets:
+    private:
+      ap-south-1a:
+        id: subnet-e9190a81  #Public-subnet1
+      ap-south-1b:
+        id: subnet-03e0a14f  #Public-subnet2
+nodeGroups:
+  - name: private-worker-nodes 
+    instanceType: t2.micro
+    desiredCapacity: 2
+    privateNetworking: false
