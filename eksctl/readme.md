@@ -1,5 +1,11 @@
 ```bash
 
+This repo contains EKS cluster creation using the eksctl CLI tool on AWS Cloud.
+
+# First, install eksctl if it is not already installed, then verify its version on the Linux/Unix machine.
+  $ eksctl version  
+    0.209.0
+
 # EKSCTL command:
 
 1) dry-run
