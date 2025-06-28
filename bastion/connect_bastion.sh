@@ -24,11 +24,11 @@ case "$region" in
         ;;
     hy|HY)
         echo "Connecting to Hyderabad bastion machine..."
-        ssh "$user@$lo"
+        ssh "$user@$hy"
         ;;
     mu|MU)
         echo "Connecting to Mumbai bastion machine..."
-        ssh "$user@$oh"
+        ssh "$user@$mu"
         ;;
     *)
         echo "Invalid input. Please enter regions like 'bl' or 'ch' or 'hy' or 'mu'"
