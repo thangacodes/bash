@@ -1,0 +1,6 @@
+- name: Run patching using shell script
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Run the shell script locally
+      shell: bash connect_install_pkg.sh
