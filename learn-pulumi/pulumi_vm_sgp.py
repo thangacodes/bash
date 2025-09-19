@@ -40,3 +40,4 @@ ec2_instance = ec2.Instance('web-server',
 
 # Export the public_ip for EC2 instance
 pulumi.export('public_ip', ec2_instance.public_ip)
+pulumi.export('instance_url', pulumi.Output.concat("http://", ec2_instance.public_dns))
