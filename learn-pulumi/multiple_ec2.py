@@ -73,7 +73,7 @@ for i in range(instance_count):
     instances.append(instance)
 
 # =====================================================================
-# 5. Outputs
+# 4. Outputs
 # =====================================================================
 pulumi.export("security_group_id", sgp.id)
 pulumi.export("instance_public_ips", [instance.public_ip for instance in instances])
