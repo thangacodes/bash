@@ -14,4 +14,14 @@ c) Python, Go, .Net
 
 Curren pulumi version is: v3.197.0
 
+Here are the most common commands in the CLI that will be using are as follows:
+
+pulumi new: creates a new project using a template
+pulumi stack: manage your stacks (at least one is required to perform an update)
+pulumi config: configure variables such as keys, regions, and so on
+pulumi up: preview and deploy changes to your program and/or infrastructure
+pulumi preview: preview your changes explicitly before deploying
+pulumi destroy: destroy your program and its infrastructure when you’re done
 ```
+
+More Commands, refer page: [https://www.pulumi.com/docs/iac/cli/commands/]
