@@ -24,4 +24,4 @@ pulumi preview: preview your changes explicitly before deploying
 pulumi destroy: destroy your program and its infrastructure when you’re done
 ```
 
-More Commands, refer page: [https://www.pulumi.com/docs/iac/cli/commands/]
+[More Commands](https://www.pulumi.com/docs/iac/cli/commands/)
