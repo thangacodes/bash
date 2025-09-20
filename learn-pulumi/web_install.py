@@ -1,6 +1,7 @@
 """
 Using AWS Python with Pulumi, provisioning cloud resources such as a Security Group and an EC2 instance. 
 Upon creation, the required Security Group is automatically attached to the EC2 instance.
+Also, here we're using user_data scripts like bootstrap
 """
 import pulumi
 from pulumi_aws import ec2
