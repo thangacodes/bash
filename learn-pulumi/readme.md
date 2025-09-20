@@ -12,7 +12,7 @@ a) TypeScript
 b) c,c++, Java
 c) Python, Go, .Net
 
-Curren pulumi version is: v3.197.0
+# Curren pulumi version is: v3.197.0
 
 Here are the most common commands in the CLI that will be using are as follows:
 
@@ -22,6 +22,7 @@ pulumi config: configure variables such as keys, regions, and so on
 pulumi up: preview and deploy changes to your program and/or infrastructure
 pulumi preview: preview your changes explicitly before deploying
 pulumi destroy: destroy your program and its infrastructure when you’re done
+pulumi stack rm <stack name>   //Post resource deleted, if you want to delete stack as well.
 ```
 
 [More Commands](https://www.pulumi.com/docs/iac/cli/commands/)
