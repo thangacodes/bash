@@ -81,12 +81,16 @@ for i in range(instance_count):
 # =====================================================================
 # 4. Outputs
 # =====================================================================
-pulumi.export("security_group_id", sgp.id)
-pulumi.export("instance_public_ips", [instance.public_ip for instance in instances])
-pulumi.export("instance_public_dns", [instance.public_dns for instance in instances])
+pulumi.export("web_securitygroup_id", sgp.id)
 pulumi.export(
-    "webipendpoint", 
+    "web_instance_ids",
+    [instance.id for instance in instances]
+)
+pulumi.export("web_instance_public_ips", [instance.public_ip for instance in instances])
+pulumi.export("web_instance_public_dns", [instance.public_dns for instance in instances])
+pulumi.export(
+    "web_ipendpoint", 
     [pulumi.Output.concat("http://", instance.public_ip) for instance in instances])
 pulumi.export(
-    "webhttpendpoint",
+    "web_httpendpoint",
     [pulumi.Output.concat("http://", instance.public_dns) for instance in instances])
