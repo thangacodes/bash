@@ -2,7 +2,6 @@
 Using AWS Python with Pulumi, provisioning cloud resources such as a Security Group and an EC2 instance. 
 Upon creation, the required Security Group is automatically attached to the EC2 instance.
 """
-
 import pulumi
 from pulumi_aws import ec2
 import pathlib
@@ -84,5 +83,9 @@ for i in range(instance_count):
 pulumi.export("security_group_id", sgp.id)
 pulumi.export("instance_public_ips", [instance.public_ip for instance in instances])
 pulumi.export("instance_public_dns", [instance.public_dns for instance in instances])
-pulumi.export("instance_urls", [pulumi.Output.concat("http://", instance.public_dns) for instance in instances])
-
+pulumi.export(
+    "webipendpoint", 
+    [pulumi.Output.concat("http://", instance.public_ip) for instance in instances])
+pulumi.export(
+    "webhttpendpoint",
+    [pulumi.Output.concat("http://", instance.public_dns) for instance in instances])
