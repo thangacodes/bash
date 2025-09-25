@@ -16,6 +16,7 @@ Shell is the interface between the user and kernel. Unix offers many different t
 ```
 
 # Linux File System:
+
 ![image](https://github.com/thangacodes/shell-scripting/assets/38905243/35ee0bdc-d110-4c35-9ec5-dbbb86f87f85)
 
 
