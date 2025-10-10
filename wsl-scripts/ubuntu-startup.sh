@@ -10,7 +10,9 @@ function start_machine() {
     echo "Sleeping for 3 seconds..."
     sleep 3
     echo "Starting default Ubuntu machine now..."
-    wsl -d Ubuntu
+    wsl -d Ubuntu -u root
+    sudo su - thangaa
+    whoami
 }
 
 function stop_machine() {
