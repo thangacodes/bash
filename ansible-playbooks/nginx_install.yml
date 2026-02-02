@@ -1,0 +1,40 @@
+---
+- name: Install,start, configure nginx static html file
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Install NGINX
+      package:
+        name: nginx
+        state: present
+
+    - name: Ensure NGINX service is running
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+    - name: Deploy static index.html
+      copy:
+        src: /tmp/index.html
+        dest: /var/www/html/index.html
+
+    - name: Wait for 1 minutes
+      pause:
+        minutes: 1
+
+    - name: Stop NGINX service
+      service:
+        name: nginx
+        state: stopped
+        enabled: no
+
+    - name: Remove NGINX package
+      package:
+        name: nginx
+        state: absent
+
+    - name: Delete index.html
+      file:
+        path: /var/www/html/index.html
+        state: absent
